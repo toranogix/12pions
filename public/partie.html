@@ -1,0 +1,98 @@
+
+<!-- Fichier HTML pour la page de jeu -->
+
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>12 pions - Partie</title>
+  <link rel="stylesheet" href="../styles/styles.css">
+  <!-- Import de la police Google Poppins -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <!-- Import de Font Awesome pour les icônes -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    integrity="sha512-..."
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+</head>
+<body>
+  <!-- Barre de titre -->
+  <div id="title-bar">
+    <div id="title">12 pions</div>
+    <div id="window-controls">
+      <button class="title-button" id="minimize-btn">&#x2013;</button>
+      <button class="title-button" id="maximize-btn">&#9744;</button>
+      <button class="title-button" id="close-btn">&#10005;</button>
+    </div>
+  </div>
+
+  <!-- Bouton hamburger -->
+  <div id="menu-toggle" class="menu-button" onclick="toggleSidebar()">&#9776;</div>
+
+  <!-- Barre latérale (fixe) -->
+  <nav id="sidebar">
+    <ul>
+      <li><a href="sign-up.html"><i class="fas fa-user"></i>Se connecter</a></li>
+      <li><a href="../index.html"><i class="fas fa-home"></i>Accueil</a></li>
+      <li><a href="how-to-play.html"><i class="fas fa-question-circle"></i>Comment jouer ?</a></li>
+    </ul>
+  </nav>
+
+  <!-- Zone de contenu -->
+  <div id="content">
+    <header>
+      <h1 style="text-align: center;">Jeu des 12 pions</h1>
+    </header>
+    <main id="game-page">
+      <div id="game-board"></div>
+      <p id="status">Sélectionnez un pion pour jouer.</p>
+      <div class="button-group">
+        <button id="new-game-button" class="btn-3d">Nouvelle Partie</button>
+        <button id="reset-game-button" class="btn-3d">Réinitialiser la partie</button>
+        <button id="abandon-button" class="btn-3d">Abandonner</button>
+      </div>
+      <!-- Popup de victoire -->
+      <div id="winner-modal" class="modal">
+        <div class="modal-content">
+          <h2>Bravo, vous avez gagné !</h2>
+          <p>Souhaitez-vous rejouer une nouvelle partie ?</p>
+          <button id="popup-replay" class="btn-3d">Rejouer ?</button>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Import de la librairie Phaser pour le jeu -->
+  <script src="https://cdn.jsdelivr.net/npm/phaser@3.55.2/dist/phaser.min.js"></script>
+  <!-- Import du script du jeu -->
+  <script src="../script.js"></script>
+  <script>
+    
+    // Boutons de la barre de titre : Fermer, Réduire, Agrandir avec Electron JS
+    document.getElementById("minimize-btn").addEventListener("click", () => {
+      window.api.minimize();
+    });
+    document.getElementById("maximize-btn").addEventListener("click", () => {
+      window.api.maximize();
+    });
+    document.getElementById("close-btn").addEventListener("click", () => {
+      window.api.close();
+    });
+
+    // Fenêtre latérale
+    function toggleSidebar() {
+      const sidebar = document.getElementById('sidebar');
+      sidebar.classList.toggle('open');
+      const content = document.getElementById('content');
+      content.classList.toggle('active');
+    }
+  </script>
+  <!-- Import de la librairie Confetti.js pour l'effet de confettis -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</body>
+</html>

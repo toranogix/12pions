@@ -1,0 +1,149 @@
+<!-- Description: Page d'accueil du jeu -->
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>12 pions - Accueil</title>
+  <link rel="stylesheet" href="styles/styles.css">
+  <!-- Import de la police Google Poppins -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  
+  <!-- Import de Font Awesome pour les icônes -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    integrity="sha512-..."
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+
+  <style>
+    /* Style pour la croix de fermeture dans la popup */
+    .close-icon {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      color: red;
+      font-size: 1.4rem;
+      cursor: pointer;
+    }
+    .modal-content {
+      position: relative;
+    }
+  </style>
+</head>
+<body>
+  <!-- Barre de titre -->
+  <div id="title-bar">
+    <div id="title">12 pions</div>
+    <div id="window-controls">
+      <button class="title-button" id="minimize-btn">&#x2013;</button>
+      <button class="title-button" id="maximize-btn">&#9744;</button>
+      <button class="title-button" id="close-btn">&#10005;</button>
+    </div>
+  </div>
+
+  <!-- Bouton hamburger pour la sidebar -->
+  <div id="menu-toggle" class="menu-button" onclick="toggleSidebar()">
+    <i class="fas fa-bars"></i>
+  </div>
+
+  <!-- Barre latérale (fixe) -->
+  <nav id="sidebar">
+    <ul>
+      <li><a href="public/sign-up.html"><i class="fas fa-user"></i>Se connecter</a></li>
+      <li><a href="public/partie.html"><i class="fas fa-home"></i>Accueil</a></li>
+      <li><a href="public/how-to-play.html"><i class="fas fa-question-circle"></i>Comment jouer ?</a></li>
+    </ul>
+  </nav>
+
+  <!-- Zone de contenu -->
+  <div id="content">
+    <div id="home-page" class="page-container">
+      <header>
+        <h1>Bienvenue sur 12 pions</h1>
+      </header>
+      <main>
+        <p>
+          Le jeu des 12 pions est un jeu de stratégie où chaque joueur commence avec 12 pions.
+          L'objectif est de capturer tous les pions adverses ou de bloquer leurs mouvements.
+          Bonne chance et amusez-vous bien !
+        </p>
+        <!-- Bouton "Nouvelle Partie" -->
+        <button id="start-game-button" class="btn-3d">Nouvelle Partie</button>
+      </main>
+      <footer>
+        <p>&copy; 2025, 12 pions - Omar.D</p>
+      </footer>
+    </div>
+  </div>
+
+  <!-- ===================== Popup de sélection du mode de jeu ===================== -->
+  <div id="mode-modal" class="modal" style="display: none;" onclick="closeModeModal()">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <h2>Choisir un mode de jeu</h2>
+      
+      <!-- Icone X pour fermer la popup -->
+      <span class="close-icon" id="close-mode-popup">
+        <i class="fas fa-times"></i>
+      </span>
+
+      <button id="play-online-btn" class="btn-3d" style="margin-bottom: 10px;">
+        <i class="fa-solid fa-earth-americas" style="margin-right: 10px;"></i>Jouer en ligne
+      </button>
+      <button id="play-ai-btn" class="btn-3d" style="margin-top: 10px;">
+        <i class="fa-solid fa-robot" style="margin-right: 10px;"></i>Jouer contre l'ordinateur
+      </button>
+    </div>
+  </div>
+  <!-- ============================================================================ -->
+
+  <script>
+
+
+    // Boutons de la barre de titre : Fermer, Réduire, Agrandir
+    document.getElementById("minimize-btn").addEventListener("click", () => {
+      window.api.minimize();
+    });
+
+    document.getElementById("maximize-btn").addEventListener("click", () => {
+      window.api.maximize();
+    });
+    
+    document.getElementById("close-btn").addEventListener("click", () => {
+      window.api.close();
+    });
+
+    // Fenêtre latérale
+    function toggleSidebar() {
+      const sidebar = document.getElementById('sidebar');
+      sidebar.classList.toggle('open');
+      const content = document.getElementById('content');
+      content.classList.toggle('active');
+    }
+
+    // Afficher la popup au clic sur "Nouvelle Partie"
+    const startGameBtn = document.getElementById("start-game-button");
+    startGameBtn.addEventListener("click", () => {
+      document.getElementById("mode-modal").style.display = "flex";
+    });
+
+    // Redirection selon le choix du mode de jeu 
+    document.getElementById("play-online-btn").addEventListener("click", () => {
+      window.location.href = "public/partie.html?mode=online";
+    });
+    document.getElementById("play-ai-btn").addEventListener("click", () => {
+      window.location.href = "public/partie.html?mode=ai";
+    });
+    document.getElementById("close-mode-popup").addEventListener("click", (event) => {
+      event.stopPropagation();
+      closeModeModal();
+    });
+    function closeModeModal() {
+      document.getElementById("mode-modal").style.display = "none";
+    }
+  </script>
+</body>
+</html>

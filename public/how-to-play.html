@@ -1,0 +1,95 @@
+
+<!-- Page Comment jouer ?-->
+
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>12 pions - Comment jouer ?</title>
+  <link rel="stylesheet" href="../styles/styles.css">
+  
+  <!-- Import de la police Google Poppins -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  
+  <!-- Import de Font Awesome pour les icônes -->
+  <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+  integrity="sha512-..."
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer"
+  />
+
+</head>
+<body>
+  <!-- Barre de titre -->
+  <div id="title-bar">
+    <div id="title">12 pions</div>
+    <div id="window-controls">
+      <button class="title-button" id="minimize-btn">&#x2013;</button>
+      <button class="title-button" id="maximize-btn">&#9744;</button>
+      <button class="title-button" id="close-btn">&#10005;</button>
+    </div>
+  </div>
+
+  <!-- Bouton hamburger -->
+  <div id="menu-toggle" class="menu-button" onclick="toggleSidebar()">&#9776;</div>
+
+  <!-- Barre latérale (fixe) -->
+  <nav id="sidebar">
+    <ul>
+      <li><a href="sign-up.html"><i class="fas fa-user"></i>Se connecter</a></li>
+      <li><a href="../index.html"><i class="fas fa-home"></i>Accueil</a></li>
+      <li><a href="how-to-play.html"><i class="fas fa-question-circle"></i>Comment jouer ?</a></li>
+    </ul>
+  </nav>
+
+  <!-- Zone de contenu -->
+  <div id="content">
+    <div class="page-container how-to-play-page">
+      <header>
+        <h1>Comment jouer ?</h1>
+      </header>
+      <main>
+        <p>Le jeu de 12 pions est un jeu de stratégie inspiré du jeu des dames. Voici les règles de base :</p>
+        <ul>
+          <li>Chaque joueur commence avec 12 pions.</li>
+          <li>Les pions se déplacent d'une case en avant, à gauche ou à droite.</li>
+          <li>Lorsqu'un pion atteint la dernière rangée du côté adverse, il est promu et devient une dame.</li>
+          <li>Les dames peuvent se déplacer sur plusieurs cases dans les mêmes directions, à condition que la voie soit libre.</li>
+          <li>Le but du jeu est de capturer tous les pions adverses ou de bloquer complètement leurs mouvements.</li>
+        </ul>
+        <p>Utilisez la souris pour glisser-déposer vos pions sur le plateau et tentez de mettre votre adversaire en difficulté.</p>
+      </main>
+      <footer>
+        <p>&copy; 2025 Jeu 12 pions - Omar.D</p>
+      </footer>
+    </div>
+  </div>
+
+  <script>
+
+    // Boutons de la barre de titre : Fermer, Réduire, Agrandir avec Electron JS
+    document.getElementById("minimize-btn").addEventListener("click", () => {
+      window.api.minimize();
+    });
+    document.getElementById("maximize-btn").addEventListener("click", () => {
+      window.api.maximize();
+    });
+    document.getElementById("close-btn").addEventListener("click", () => {
+      window.api.close();
+    });
+
+
+    // Fenêtre latérale
+    function toggleSidebar() {
+      const sidebar = document.getElementById('sidebar');
+      sidebar.classList.toggle('open');
+      const content = document.getElementById('content');
+      content.classList.toggle('active');
+    }
+  </script>
+</body>
+</html>

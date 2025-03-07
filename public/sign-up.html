@@ -1,0 +1,130 @@
+<!-- Page de Connexion -->
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>12 pions - Se connecter</title>
+  <link rel="stylesheet" href="../styles/styles.css">
+  <!-- Import de la police Google Poppins -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <!-- Import de Font Awesome pour les icônes -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    integrity="sha512-..."
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+</head>
+<body>
+  <!-- Barre de titre -->
+  <div id="title-bar">
+    <div id="title">12 pions</div>
+    <div id="window-controls">
+      <button class="title-button" id="minimize-btn">&#x2013;</button>
+      <button class="title-button" id="maximize-btn">&#9744;</button>
+      <button class="title-button" id="close-btn">&#10005;</button>
+    </div>
+  </div>
+  
+  <!-- Bouton hamburger -->
+  <div id="menu-toggle" class="menu-button" onclick="toggleSidebar()">&#9776;</div>
+  
+  <!-- Barre latérale (fixe) -->
+  <nav id="sidebar">
+    <ul>
+      <li><a href="sign-up.html"><i class="fas fa-user"></i>Se connecter</a></li>
+      <li><a href="../index.html"><i class="fas fa-home"></i>Accueil</a></li>
+      <li><a href="how-to-play.html"><i class="fas fa-question-circle"></i>Comment jouer ?</a></li>
+    </ul>
+  </nav>
+  
+  <!-- Zone de contenu -->
+  <div id="content">
+    <div class="page-container">
+      <header>
+        <h1>Se connecter</h1>
+      </header>
+      <main id="auth-section">
+        <p>Entrez votre email ou identifiant pour vous connecter.</p>
+  
+        <div class="auth-input-group">
+          <input 
+            type="text" 
+            id="user-identifier" 
+            name="user-identifier" 
+            placeholder="Email ou identifiant"
+            required
+          />
+        </div>
+  
+        <button class="btn-auth" id="identifier-login-btn">Se connecter</button>
+  
+        <p class="divider">ou continuer avec</p>
+  
+        <button class="btn-auth google-btn" id="google-login-btn">
+          <i class="fa-brands fa-google" style="margin-right: 8px;"></i>Google
+        </button>
+  
+        <button class="btn-auth apple-btn" id="apple-login-btn">
+          <i class="fa-brands fa-apple" style="margin-right: 8px;"></i>Apple
+        </button>
+        
+        <!-- Conditions d'utilisations : Notes léagales
+         ==> TODO :::: Renseigner le lien vers les notes légales -->
+        <p class="legal-note" >
+          En cliquant sur Continuer, vous acceptez nos
+          <a href="#">Conditions d'utilisation</a> et notre  
+          <a href="#">Politique de confidentialité</a>.
+        </p>
+      </main>
+    </div>
+  </div>
+  
+  <script>
+    // Boutons de la barre de titre : Fermer, Réduire, Agrandir avec Electron JS
+    document.getElementById("minimize-btn").addEventListener("click", () => {
+      window.api.minimize();
+    });
+    document.getElementById("maximize-btn").addEventListener("click", () => {
+      window.api.maximize();
+    });
+    document.getElementById("close-btn").addEventListener("click", () => {
+      window.api.close();
+    });
+  
+    // Fenêtre latérale
+    function toggleSidebar() {
+      const sidebar = document.getElementById('sidebar');
+      sidebar.classList.toggle('open');
+      const content = document.getElementById('content');
+      content.classList.toggle('active');
+    }
+  
+    // Authentification via email ou identifiant
+    // ==> TODO :::: Implémenter la connexion via email ou identifiant
+    document.getElementById("identifier-login-btn").addEventListener("click", () => {
+      const identifier = document.getElementById("user-identifier").value;
+      if(!identifier) {
+        alert("Veuillez saisir votre email ou identifiant.");
+        return;
+      }
+      alert('Connexion avec : ' + identifier);
+    });
+  
+    // Authentification via Google
+    // ==> TODO :::: Implémenter la connexion via Google
+    document.getElementById("google-login-btn").addEventListener("click", () => {
+      alert("Connexion via Google");
+    });
+  
+    // Authentification via Apple
+    // ==> TODO :::: Implémenter la connexion via Apple
+    document.getElementById("apple-login-btn").addEventListener("click", () => {
+      alert("Connexion via Apple");
+    });
+  </script>
+</body>
+</html>
