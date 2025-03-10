@@ -1,6 +1,14 @@
 # 12 Pions
 Ce projet est construit en utilisant JavaScript, HTML et ElectronJS.
 
+
+https://github.com/user-attachments/assets/8244bc1f-a4bf-44d9-bec3-b0d9d25a4b0a
+
+
+
+https://github.com/user-attachments/assets/384938a7-9217-4142-ac1c-2c761e1502aa
+
+
 ## Installation
 Pour installer et configurer le projet, suivez ces étapes :
 
